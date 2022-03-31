@@ -1,0 +1,42 @@
+@import "src/assets/variables";
+
+.card-wrapper {
+  width: 25%;
+  min-width: 300px;
+  padding: 12px;
+}
+
+.card-container {
+  height: fit-content;
+  padding: 24px;
+  background-color: $base-color;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card {
+  &__title {
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 42px;
+  }
+
+  &__text {
+    font-size: 26px;
+  }
+
+  &__value {
+    font-size: 56px;
+  }
+
+  &__button {
+    margin-top: 16px;
+    padding: 4px;
+    border: none;
+    border-radius: 10px;
+    font-size: 32px;
+    color: $base-color;
+    width: 80%;
+    cursor: pointer;
+  }
+}

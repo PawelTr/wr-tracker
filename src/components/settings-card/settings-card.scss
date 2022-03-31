@@ -1,0 +1,67 @@
+@import "src/assets/variables";
+
+.settings-card {
+  &__wrapper {
+    width: 25%;
+    min-width: 300px;
+    padding: 12px;
+  }
+
+  &__container {
+    text-align: center;
+    background-color: $base-color;
+    border-radius: 10px;
+    padding: 24px;
+  }
+
+  &__title {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    font-family: sans-serif;
+    width: 100%;
+    font-size: 32px;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &-wrapper {
+      display: flex;
+      position: relative;
+    }
+
+    &-text {
+      position: absolute;
+      right: 12px;
+      top: 24px;
+    }
+  }
+
+  &__button {
+    font-family: sans-serif;
+    font-size: 32px;
+    padding: 4px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
