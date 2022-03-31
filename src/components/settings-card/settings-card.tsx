@@ -1,22 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './settings-card.scss'
 import { useAction } from '../../store/action-creators/useAction';
 import { SettingsCardProps } from '../../types/SettingsCard';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import successLogo from '../../assets/icons/success.svg'
 
 const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => {
 
-  const counter = useTypedSelector((state => state.user[`${props.type}Counter`]))
+  const { goal } = useTypedSelector((state => state.user[`${props.type}Counter`]))
 
   const actions = useAction()
 
-  const goal = counter.goal
+  const [success, setSuccess] = useState(false)
 
   const submitHandler: any = (event: any) => {
     event.preventDefault()
     const count = +event.target[0].value
-    return actions[`update${props.type}Goal`](count)
+    actions[`update${props.type}Goal`](count)
+
+    setSuccess(() => true)
+    if (!success) {
+      window.setTimeout(() => {
+        setSuccess(() => false)
+      }, 1000)
+    }
   }
 
   return(
@@ -37,6 +45,7 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
                   className="settings-card__button"
                   style={{ backgroundColor: props.color }}>
             Save
+            {success ? <img className="settings-card__button-success" src={successLogo} alt="success"/> : ''}
           </button>
         </form>
       </div>

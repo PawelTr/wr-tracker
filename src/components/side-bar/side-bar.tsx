@@ -14,7 +14,6 @@ const SideBar: React.FC = () => {
     <div className="sidebar">
       <div className="logo">
         <img src={logo} alt="logo" className="logo__img"/>
-        {/*<div className="logo__title">WR-tracker</div>*/}
       </div>
       <nav className="nav">
         <ul>
