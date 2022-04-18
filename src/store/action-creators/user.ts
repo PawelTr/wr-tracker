@@ -1,50 +1,27 @@
 import { Dispatch } from 'redux';
 import { UserAction, UserActionTypes } from '../../types/user';
 
-export const updateWorkCounter = (count: number) => {
+export const updateCounter = (id: number, count: number) => {
   return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_WORK_COUNTER, payload: count})
+    dispatch({type: UserActionTypes.SET_COUNTER, payload: {id, count}})
   }
 }
 
-export const updateRestCounter = (count: number) => {
+
+export const updateGoal = (id: number, count: number) => {
   return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_REST_COUNTER, payload: count})
+    dispatch({type: UserActionTypes.SET_GOAL, payload: {id, count}})
   }
 }
 
-export const updateWorkGoal = (count: number) => {
+export const setActive = (id: number, isActive: boolean) => {
   return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_WORK_GOAL, payload: count})
+    dispatch({type: UserActionTypes.SET_ACTIVE, payload: {id, isActive}})
   }
 }
 
-export const updateRestGoal = (count: number) => {
+export const setInterval = (id: number, interval: number) => {
   return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_REST_GOAL, payload: count})
-  }
-}
-
-export const setRestActive = (isActive: boolean) => {
-  return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_REST_ACTIVE, payload: isActive})
-  }
-}
-
-export const setWorkActive = (isActive: boolean) => {
-  return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_WORK_ACTIVE, payload: isActive})
-  }
-}
-
-export const setWorkInterval = (interval: number) => {
-  return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_WORK_INTERVAL_ID, payload: interval})
-  }
-}
-
-export const setRestInterval = (interval: number) => {
-  return (dispatch: Dispatch<UserAction>) => {
-    dispatch({type: UserActionTypes.SET_REST_INTERVAL_ID, payload: interval})
+    dispatch({type: UserActionTypes.SET_INTERVAL_ID, payload: {id, interval}})
   }
 }

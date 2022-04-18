@@ -1,14 +1,10 @@
 export interface CounterState {
-  type: CounterTypes,
+  id: number,
+  title?: string,
   currentSessionValue: number,
   weekValue: number,
   monthValue: number,
   goal: number,
   isActive: boolean,
   activeIntervalId: number,
-}
-
-export enum CounterTypes {
-  WORK = 'Work',
-  REST = 'Rest'
 }

@@ -1,113 +1,80 @@
 import { UserAction, UserActionTypes, UserState } from '../../types/user';
-import { CounterTypes } from '../../types/counter';
+import { CounterState } from '../../types/counter';
 
 
 const initialState: UserState = {
   userId: 0,
   userName: 'Pavel',
   loading: false,
-  WorkCounter: {
-    type: CounterTypes.WORK,
-    currentSessionValue: 0,
-    weekValue: 0,
-    monthValue: 0,
-    goal: 60,
-    isActive: false,
-    activeIntervalId: 0,
-  },
-  RestCounter: {
-    type: CounterTypes.REST,
-    currentSessionValue: 0,
-    weekValue: 0,
-    monthValue: 0,
-    goal: 60,
-    isActive: false,
-    activeIntervalId: 0,
-  }
+  counters: [
+    {
+      id: 0,
+      currentSessionValue: 0,
+      weekValue: 0,
+      monthValue: 0,
+      goal: 60,
+      isActive: false,
+      activeIntervalId: 0,
+    },
+    {
+      id: 1,
+      currentSessionValue: 0,
+      weekValue: 0,
+      monthValue: 0,
+      goal: 60,
+      isActive: false,
+      activeIntervalId: 0,
+    }
+  ],
 }
 
 export default function userReducer(state: UserState = initialState, action: UserAction): UserState {
   switch (action.type) {
-    case UserActionTypes.SET_WORK_COUNTER:
+    case UserActionTypes.SET_COUNTER: {
+      const index = state.counters.findIndex((counter: CounterState) => counter.id === action.payload.id);
+      const newCountersList = [...state.counters];
+      newCountersList[index].currentSessionValue = action.payload.count;
       return {
         ...state,
-        WorkCounter: {
-          ...state.WorkCounter,
-          currentSessionValue: action.payload,
-        }
+        counters: [...newCountersList],
       }
-    case UserActionTypes.SET_REST_COUNTER:
+    }
+    case UserActionTypes.SET_GOAL: {
+      const index = state.counters.findIndex((counter: CounterState) => counter.id === action.payload.id);
+      const newCountersList = [...state.counters];
+      newCountersList[index].goal = action.payload.count;
       return {
         ...state,
-        RestCounter: {
-          ...state.RestCounter,
-          currentSessionValue: action.payload,
-        }      }
-    case UserActionTypes.SET_WORK_GOAL:
-      return {
-        ...state,
-        WorkCounter: {
-          ...state.WorkCounter,
-          goal: action.payload,
-        }
+        counters: [...newCountersList],
       }
-    case UserActionTypes.SET_REST_GOAL:
+    }
+    case UserActionTypes.SET_ACTIVE: {
+      const index = state.counters.findIndex((counter: CounterState) => counter.id === action.payload.id);
+      const newCountersList = [...state.counters];
+      newCountersList[index].isActive = action.payload.isActive;
       return {
         ...state,
-        RestCounter: {
-          ...state.RestCounter,
-          goal: action.payload,
-        }
+        counters: [...newCountersList],
       }
-    case UserActionTypes.SET_WORK_ACTIVE:
+    }
+    case UserActionTypes.SET_INTERVAL_ID: {
+      const index = state.counters.findIndex((counter: CounterState) => counter.id === action.payload.id);
+      const newCountersList = [...state.counters];
+      newCountersList[index].activeIntervalId = action.payload.interval;
       return {
         ...state,
-        WorkCounter: {
-          ...state.WorkCounter,
-          isActive: action.payload,
-        }
+        counters: [...newCountersList],
       }
-    case UserActionTypes.SET_REST_ACTIVE:
-      return {
-        ...state,
-        RestCounter: {
-          ...state.RestCounter,
-          isActive: action.payload,
-        }
-      }
-    case UserActionTypes.SET_REST_INTERVAL_ID:
-      return {
-        ...state,
-        RestCounter: {
-          ...state.RestCounter,
-          activeIntervalId: action.payload,
-        }
-      }
-    case UserActionTypes.SET_WORK_INTERVAL_ID:
-      return {
-        ...state,
-        WorkCounter: {
-          ...state.WorkCounter,
-          activeIntervalId: action.payload,
-        }
-      }
+    }
     default:
       return state;
   }
 }
 
-export const setWorkCounter = (count: number) => ({type: UserActionTypes.SET_WORK_COUNTER, payload: count})
+export const setCounter = (id: number, count: number) => ({type: UserActionTypes.SET_COUNTER, payload: {id, count}})
 
-export const setRestCounter = (count: number) => ({type: UserActionTypes.SET_REST_COUNTER, payload: count})
+export const setGoal = (id: number, count: number) => ({type: UserActionTypes.SET_GOAL, payload: {id, count}})
 
-export const setWorkGoal = (count: number) => ({type: UserActionTypes.SET_WORK_GOAL, payload: count})
+export const setActive = (id: number, isActive: boolean) => ({type: UserActionTypes.SET_ACTIVE, payload: {id, isActive}})
 
-export const setRestGoal = (count: number) => ({type: UserActionTypes.SET_REST_GOAL, payload: count})
-
-export const setRestActive = (isActive: boolean) => ({type: UserActionTypes.SET_REST_ACTIVE, payload: isActive})
-
-export const setWorkActive = (isActive: boolean) => ({type: UserActionTypes.SET_WORK_ACTIVE, payload: isActive})
-
-export const setWorkInterval = (interval: number) => ({type: UserActionTypes.SET_WORK_INTERVAL_ID, payload: interval})
-
-export const setRestInterval = (interval: number) => ({type: UserActionTypes.SET_REST_INTERVAL_ID, payload: interval})
+export const setInterval = (id: number, interval: number) => ({type: UserActionTypes.SET_INTERVAL_ID, payload: {id, interval}})

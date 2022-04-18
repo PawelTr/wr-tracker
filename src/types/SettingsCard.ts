@@ -1,6 +1,5 @@
-import { CounterTypes } from './counter';
 
 export interface SettingsCardProps {
+  id: number,
   color: string,
-  type: CounterTypes,
 }

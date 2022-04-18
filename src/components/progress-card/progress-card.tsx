@@ -9,7 +9,7 @@ import { useAction } from '../../store/action-creators/useAction';
 
 const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => {
 
-  const { goal, currentSessionValue, isActive, activeIntervalId } = useTypedSelector(state => state.user[`${props.type}Counter`])
+  const { goal, currentSessionValue, isActive, activeIntervalId } = useTypedSelector(state => state.user.counters[props.id])
 
   const actions = useAction();
 
@@ -24,12 +24,12 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
   const stopCounter = () => {
     clearInterval(activeIntervalId);
 
-    actions[`set${props.type}Active`](false)
-    actions[`set${props.type}Interval`](0)
+    actions.setActive(props.id, false);
+    actions.setInterval(props.id, 0);
   }
 
   const startCounter = () => {
-    actions[`set${props.type}Active`](true)
+    actions.setActive(props.id, true);
 
     if (activeIntervalId) {
       return;
@@ -38,10 +38,10 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
     if (!activeIntervalId) {
       const newIntervalId = window.setInterval(() => {
         newCurrentSessionValue++
-        actions[`update${props.type}Counter`](newCurrentSessionValue);
+        actions.updateCounter(props.id, newCurrentSessionValue);
       }, 1000)
 
-      actions[`set${props.type}Interval`](newIntervalId)
+      actions.setInterval(props.id, newIntervalId);
     }
   }
 
