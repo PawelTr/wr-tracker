@@ -1,5 +1,5 @@
+import { CounterState } from './counter';
 
 export interface SettingsCardProps {
-  id: number,
-  color: string,
+  counter: CounterState,
 }

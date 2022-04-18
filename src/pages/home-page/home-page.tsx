@@ -16,9 +16,9 @@ const HomePage: React.FC = () => {
   return (
     <div className="home__container">
       { counters.map((counter: CounterState) => {
-        return <ProgressCard id={counter.id} color="#3e98c7" title="Counter"/>
+        return <ProgressCard counter={counter} key={counter.id}/>
       }) }
-      <AddCard type={AddCardTypes['COUNTER-CARD']}/>
+      <AddCard type={AddCardTypes.COUNTER_CARD}/>
     </div>
   );
 }

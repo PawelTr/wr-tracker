@@ -8,7 +8,8 @@ const initialState: UserState = {
   loading: false,
   counters: [
     {
-      id: 0,
+      id: Math.random(),
+      title: 'Work Counter',
       currentSessionValue: 0,
       weekValue: 0,
       monthValue: 0,
@@ -17,7 +18,8 @@ const initialState: UserState = {
       activeIntervalId: 0,
     },
     {
-      id: 1,
+      id: Math.random(),
+      title: 'Rest Counter',
       currentSessionValue: 0,
       weekValue: 0,
       monthValue: 0,
@@ -66,6 +68,21 @@ export default function userReducer(state: UserState = initialState, action: Use
         counters: [...newCountersList],
       }
     }
+    case UserActionTypes.SET_COUNTER_TITLE: {
+      const index = state.counters.findIndex((counter: CounterState) => counter.id === action.payload.id);
+      const newCountersList = [...state.counters];
+      newCountersList[index].title = action.payload.title;
+      return {
+        ...state,
+        counters: [...newCountersList],
+      }
+    }
+    case UserActionTypes.ADD_COUNTER: {
+      return {
+        ...state,
+        counters: [...state.counters, action.payload],
+      }
+    }
     default:
       return state;
   }
@@ -78,3 +95,8 @@ export const setGoal = (id: number, count: number) => ({type: UserActionTypes.SE
 export const setActive = (id: number, isActive: boolean) => ({type: UserActionTypes.SET_ACTIVE, payload: {id, isActive}})
 
 export const setInterval = (id: number, interval: number) => ({type: UserActionTypes.SET_INTERVAL_ID, payload: {id, interval}})
+
+export const setTitle = (id: number, title: string) => ({type: UserActionTypes.SET_INTERVAL_ID, payload: {id, title}})
+
+export const addCounter = (id: number, counter: CounterState) => ({type: UserActionTypes.ADD_COUNTER, payload: counter})
+

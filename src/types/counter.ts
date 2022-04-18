@@ -1,6 +1,6 @@
 export interface CounterState {
   id: number,
-  title?: string,
+  title: string,
   currentSessionValue: number,
   weekValue: number,
   monthValue: number,

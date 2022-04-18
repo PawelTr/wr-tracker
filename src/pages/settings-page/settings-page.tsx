@@ -12,7 +12,7 @@ const SettingsPage: React.FC = () => {
     <div className="settings-container">
       {
         counters.map((counter: CounterState) => {
-          return <SettingsCard id={counter.id} color='#3e98c7' />
+          return <SettingsCard counter={counter} key={counter.id}/>
         })
       }
     </div>

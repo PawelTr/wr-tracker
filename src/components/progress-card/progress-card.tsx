@@ -4,66 +4,65 @@ import 'react-circular-progressbar/dist/styles.css';
 import './progress-card.scss'
 
 import { ProgressCardProps } from '../../types/ProgressCard';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useAction } from '../../store/action-creators/useAction';
 
 const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => {
 
-  const { goal, currentSessionValue, isActive, activeIntervalId } = useTypedSelector(state => state.user.counters[props.id])
+  const { setActive, setInterval, updateCounter } = useAction();
 
-  const actions = useAction();
+  let newCurrentSessionValue = props.counter.currentSessionValue;
 
-  let newCurrentSessionValue = currentSessionValue
+  const color = 'blueviolet';
 
   useEffect(() => {
-    if (currentSessionValue/goal === 1) {
-      clearInterval(activeIntervalId);
+    if (props.counter.currentSessionValue/props.counter.goal === 1) {
+      clearInterval(props.counter.activeIntervalId);
     }
-  }, [currentSessionValue, activeIntervalId, goal])
+  }, [props.counter.currentSessionValue, props.counter.activeIntervalId, props.counter.goal])
 
   const stopCounter = () => {
-    clearInterval(activeIntervalId);
+    clearInterval(props.counter.activeIntervalId);
 
-    actions.setActive(props.id, false);
-    actions.setInterval(props.id, 0);
+    setActive(props.counter.id, false);
+    setInterval(props.counter.id, 0);
   }
 
   const startCounter = () => {
-    actions.setActive(props.id, true);
+    setActive(props.counter.id, true);
 
-    if (activeIntervalId) {
+    if (props.counter.activeIntervalId) {
       return;
     }
 
-    if (!activeIntervalId) {
+    if (!props.counter.activeIntervalId) {
       const newIntervalId = window.setInterval(() => {
         newCurrentSessionValue++
-        actions.updateCounter(props.id, newCurrentSessionValue);
+        updateCounter(props.counter.id, newCurrentSessionValue);
       }, 1000)
 
-      actions.setInterval(props.id, newIntervalId);
+      setInterval(props.counter.id, newIntervalId);
     }
   }
 
   return(
     <div className="card-wrapper">
       <div className="card-container">
-        <div className="card__title"  style={{color: props.color}}> { props.title } </div>
-        <CircularProgressbarWithChildren value={ +(currentSessionValue/goal * 100).toFixed(0) }
+        <div className="card__title"  style={{color: color}}> { props.counter.title } </div>
+        <CircularProgressbarWithChildren value={ +(props.counter.currentSessionValue/props.counter.goal * 100).toFixed(0) }
                                          maxValue={ 100 }
                                          strokeWidth={ 12 }
                                          styles={ buildStyles({
-                                             pathColor: props.color
+                                             pathColor: color
                                            }
                                          )}>
-          <div className="card__value" style={{ color: props.color }}> { (currentSessionValue/goal * 100).toFixed(0) }% </div>
-          <div className="card__text" style={{ color: props.color }}> Completed </div>
+          <div className="card__value" style={{ color: color }}> { (props.counter.currentSessionValue/props.counter.goal * 100).toFixed(0) }% </div>
+          <div className="card__text" style={{ color: color }}> Completed </div>
         </CircularProgressbarWithChildren>
         <button type="button"
                 className="card__button"
-                style={{ backgroundColor: props.color }}
-                onClick={ isActive? stopCounter : startCounter }>
-          { isActive ? 'Stop' : 'Start' }
+                style={{ backgroundColor: color }}
+                onClick={ props.counter.isActive? stopCounter : startCounter }>
+          { props.counter.isActive ? 'Stop' : 'Start' }
         </button>
       </div>
     </div>

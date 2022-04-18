@@ -1,6 +1,6 @@
 export enum AddCardTypes {
-  'COUNTER-CARD'= 'COUNTER',
-  'SETTINGS-CARD' = 'SETTINGS-CARD',
+  'COUNTER_CARD'= 'COUNTER',
+  'SETTINGS_CARD' = 'SETTINGS_CARD',
 }
 export interface AddCardProps {
   type: AddCardTypes,

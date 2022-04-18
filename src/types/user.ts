@@ -12,6 +12,21 @@ export enum UserActionTypes {
   SET_GOAL = 'SET_GOAL',
   SET_ACTIVE = 'SET_ACTIVE',
   SET_INTERVAL_ID = 'SET_INTERVAL_ID',
+  SET_COUNTER_TITLE = 'SET_COUNTER_TITLE',
+  ADD_COUNTER = 'ADD_COUNTER',
+}
+
+interface AddCounter {
+  type: UserActionTypes.ADD_COUNTER,
+  payload: CounterState,
+}
+
+interface SetCounterTitle {
+  type: UserActionTypes.SET_COUNTER_TITLE,
+  payload: {
+    id: number,
+    title: string,
+  }
 }
 
 interface SetCounterAction {
@@ -49,3 +64,5 @@ export type UserAction = SetCounterAction
   | SetGoalAction
   | SetActiveAction
   | SetIntervalAction
+  | SetCounterTitle
+  | AddCounter
