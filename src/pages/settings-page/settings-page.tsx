@@ -3,6 +3,7 @@ import './settings-page.scss';
 import SettingsCard from '../../components/settings-card/settings-card';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { CounterState } from '../../types/counter';
+import AddCard from '../../components/add-card/add-card';
 
 const SettingsPage: React.FC = () => {
 
@@ -15,6 +16,7 @@ const SettingsPage: React.FC = () => {
           return <SettingsCard counter={counter} key={counter.id}/>
         })
       }
+      <AddCard/>
     </div>
   )
 }

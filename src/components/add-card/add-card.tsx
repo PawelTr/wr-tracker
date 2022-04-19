@@ -1,13 +1,33 @@
 import React from 'react';
-import { AddCardProps } from '../../types/AddCard';
 import logo from '../../assets/icons/add-svg.svg'
 import './add-card.scss'
+import { useAction } from '../../store/action-creators/useAction';
 
-const AddCard: React.FC<AddCardProps> = (props: AddCardProps) => {
+const AddCard: React.FC = () => {
+
+  const { addCounter } = useAction();
+
+  const addCounterHandler = (): void => {
+    const newCounter = {
+      id: Math.random(),
+      title: 'New Counter',
+      currentSessionValue: 0,
+      weekValue: 0,
+      monthValue: 0,
+      goal: 60,
+      isActive: false,
+      activeIntervalId: 0,
+    }
+
+    addCounter(newCounter);
+  }
+
   return(
     <div className='card-wrapper'>
-      <div className="card-container card-container--add">
-        <img src={logo} alt="add-img" className="add-img"/>
+      <div className="card-container--add">
+        <button className="card-add__button" onClick={addCounterHandler}>
+          <img src={logo} alt="add-img" className="add-img"/>
+        </button>
       </div>
     </div>
   );

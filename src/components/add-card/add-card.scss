@@ -1,13 +1,24 @@
 .card-container--add {
+  height: fit-content;
+  min-width: 326px;
+  border-radius: 10px;
+  text-align: center;
   display: flex;
   justify-content: center;
-  padding: 36px;
   align-items: center;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.16);
-  cursor: pointer;
 }
 
 .add-img {
   max-width: 144px;
+}
+
+.card-add__button {
+  border-radius: 10px;
+  padding: 36px;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }

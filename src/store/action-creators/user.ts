@@ -32,7 +32,7 @@ export const setTitle = (id: number, title: string) => {
   }
 }
 
-export const addCounter = (id: number, counter: CounterState) => {
+export const addCounter = (counter: CounterState) => {
   return (dispatch: Dispatch<UserAction>) => {
     dispatch({type: UserActionTypes.ADD_COUNTER, payload: counter})
   }

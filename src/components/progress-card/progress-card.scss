@@ -1,14 +1,14 @@
 @import "src/assets/variables";
 
 .card-wrapper {
-  width: fit-content;
-  min-width: 25%;
+  width: 33.3333%;
+  min-width: 336px;
   padding: 12px;
 }
 
 .card-container {
   height: fit-content;
-  min-width: 300px;
+  min-width: 324px;
   padding: 24px;
   background-color: $base-color;
   border-radius: 10px;

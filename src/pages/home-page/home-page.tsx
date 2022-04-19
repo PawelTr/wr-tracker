@@ -6,7 +6,6 @@ import './home-page.scss';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { CounterState } from '../../types/counter';
 import AddCard from '../../components/add-card/add-card';
-import { AddCardTypes } from '../../types/AddCard';
 
 
 const HomePage: React.FC = () => {
@@ -18,7 +17,7 @@ const HomePage: React.FC = () => {
       { counters.map((counter: CounterState) => {
         return <ProgressCard counter={counter} key={counter.id}/>
       }) }
-      <AddCard type={AddCardTypes.COUNTER_CARD}/>
+      <AddCard />
     </div>
   );
 }
