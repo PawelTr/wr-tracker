@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/wr-tracker/static/css/main.667e07c3.css",
+    "main.js": "/wr-tracker/static/js/main.9e26b8fc.js",
+    "static/js/787.50c9078a.chunk.js": "/wr-tracker/static/js/787.50c9078a.chunk.js",
+    "static/media/Settings.svg": "/wr-tracker/static/media/Settings.6b03887a2b76ccd57766a3c3bd867ddf.svg",
+    "static/media/logout.svg": "/wr-tracker/static/media/logout.37095d438ad207011c818866a2d2e06d.svg",
+    "static/media/Dashboard.svg": "/wr-tracker/static/media/Dashboard.afae735ef6d7a00fc1217b922e503329.svg",
+    "static/media/Profile.svg": "/wr-tracker/static/media/Profile.6cff8415daaef8229d9667319bcbd392.svg",
+    "static/media/edit-svg.svg": "/wr-tracker/static/media/edit-svg.b515d7631629ca6b523655da500156f6.svg",
+    "static/media/save-svg.svg": "/wr-tracker/static/media/save-svg.fb53258f956759faf7e2d4fcd8078695.svg",
+    "static/media/success.svg": "/wr-tracker/static/media/success.f0d48c9696dec2ab6793f56b14aedd33.svg",
+    "index.html": "/wr-tracker/index.html",
+    "static/media/add-svg.svg": "/wr-tracker/static/media/add-svg.c276f3c1ba209b1ddd5c2ce8ce0eff6b.svg",
+    "main.667e07c3.css.map": "/wr-tracker/static/css/main.667e07c3.css.map",
+    "main.9e26b8fc.js.map": "/wr-tracker/static/js/main.9e26b8fc.js.map",
+    "787.50c9078a.chunk.js.map": "/wr-tracker/static/js/787.50c9078a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.667e07c3.css",
+    "static/js/main.9e26b8fc.js"
+  ]
+}
