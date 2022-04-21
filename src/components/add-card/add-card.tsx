@@ -10,6 +10,7 @@ const AddCard: React.FC = () => {
   const addCounterHandler = (): void => {
     const newCounter = {
       id: Math.random(),
+      ownerId: 0,
       title: 'New Counter',
       currentSessionValue: 0,
       weekValue: 0,

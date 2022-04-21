@@ -1,5 +1,6 @@
 export interface CounterState {
   id: number,
+  ownerId: number,
   title: string,
   currentSessionValue: number,
   weekValue: number,

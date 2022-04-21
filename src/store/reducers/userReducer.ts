@@ -9,6 +9,7 @@ const initialState: UserState = {
   counters: [
     {
       id: Math.random(),
+      ownerId: 0,
       title: 'Work Counter',
       currentSessionValue: 0,
       weekValue: 0,
@@ -19,6 +20,7 @@ const initialState: UserState = {
     },
     {
       id: Math.random(),
+      ownerId: 0,
       title: 'Rest Counter',
       currentSessionValue: 0,
       weekValue: 0,
