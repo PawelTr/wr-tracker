@@ -10,7 +10,7 @@ import AddCard from '../../components/add-card/add-card';
 
 const HomePage: React.FC = () => {
 
-  const { counters } = useTypedSelector(state => state.user);
+  const { counters } = useTypedSelector(state => state.counters);
 
   return (
     <div className="home__container">

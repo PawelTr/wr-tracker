@@ -1,5 +1,5 @@
-import * as UserActions from './user'
+import * as CountersActions from './counter'
 
 export default {
-  ...UserActions
+  ...CountersActions
 }

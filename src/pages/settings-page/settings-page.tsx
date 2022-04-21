@@ -7,7 +7,7 @@ import AddCard from '../../components/add-card/add-card';
 
 const SettingsPage: React.FC = () => {
 
-  const { counters } = useTypedSelector(state => state.user);
+  const { counters } = useTypedSelector(state => state.counters);
 
   return(
     <div className="settings-container">
