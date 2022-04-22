@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import './settings-card.scss'
 import { useAction } from '../../store/action-creators/useAction';
 import { SettingsCardProps } from '../../types/SettingsCard';
+import CircularProgress from "react-cssfx-loading/lib/CircularProgress";
 import successLogo from '../../assets/icons/success.svg'
 import editLogo from '../../assets/icons/edit-svg.svg'
 import saveLogo from '../../assets/icons/save-svg.svg'
@@ -53,12 +54,13 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
                  style={{ color: color }}
                  readOnly={ !isTitleActive }
                  ref={titleInput}/>
+          { props.counter.isLoading && <CircularProgress width="36px" height="36px" color={'#000'} /> }
           { isTitleActive
-            ?  <button type="submit" className="settings-card__button-save">
+            ?  <button type="submit" className="settings-card__button-save" disabled={props.counter.isLoading}>
                   <img src={ saveLogo }
                        alt="save"/>
                 </button>
-            :  <button className="settings-card__button-edit" onClick={ editTitleHandler }>
+            :  <button className="settings-card__button-edit" onClick={ editTitleHandler } disabled={props.counter.isLoading}>
                     <img src={ editLogo }
                          alt="edit"/>
                 </button>
@@ -76,9 +78,13 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
           </div>
           <button type="submit"
                   className="settings-card__button"
+                  disabled={props.counter.isLoading}
                   style={{ backgroundColor: color }}>
-            Save
-            {success ? <img className="settings-card__button-success" src={successLogo} alt="success"/> : ''}
+            { props.counter.isLoading
+              ? <CircularProgress width="36px" height="36px" color={'#fff'} />
+              : ( <div><span>Save</span> {success && <img className="settings-card__button-success" src={successLogo} alt="success"/>}</div>
+              )
+            }
           </button>
         </form>
       </div>

@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 
+import CircularProgress from 'react-cssfx-loading/lib/CircularProgress';
+
 import ProgressCard from '../../components/progress-card/progress-card';
+import AddCard from '../../components/add-card/add-card';
+
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useAction } from '../../store/action-creators/useAction';
+import { CounterState } from '../../types/counter';
 
 import './home-page.scss';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { CounterState } from '../../types/counter';
-import AddCard from '../../components/add-card/add-card';
-import { useAction } from '../../store/action-creators/useAction';
+
 
 
 const HomePage: React.FC = () => {
@@ -19,7 +23,9 @@ const HomePage: React.FC = () => {
   }, [])
 
   if (loading) {
-    return <div>loading...</div>
+    return <div className='loader-container'>
+      <CircularProgress width='64px' height='64px' color={'#fff'} />
+    </div>
   }
 
   if (error) {
