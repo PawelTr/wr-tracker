@@ -9,7 +9,7 @@ import saveLogo from '../../assets/icons/save-svg.svg'
 
 const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => {
 
-  const { updateGoal, setTitle } = useAction();
+  const { patchCounter } = useAction();
 
   const color = 'blueviolet';
 
@@ -20,7 +20,7 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
   const submitGoalHandler = (event: any): void => {
     event.preventDefault();
     const countInMinutes = +event.target[0].value * 60;
-    updateGoal(props.counter._id, countInMinutes);
+    patchCounter(props.counter._id, { goal: countInMinutes })
 
     setSuccess(() => true)
     if (!success) {
@@ -32,8 +32,8 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
 
   const submitTitleHandler = (event: any): void => {
     event.preventDefault();
-    const newTitle = event.target[0].value;
-    setTitle(props.counter._id, newTitle);
+    const title = event.target[0].value;
+    patchCounter(props.counter._id, { title })
     setTitleActive(false);
   }
 

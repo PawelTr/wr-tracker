@@ -61,15 +61,6 @@ export default function counterReducer(state: CountersState = initialState, acti
         counters: [...newCountersList],
       }
     }
-    case CountersActionTypes.SET_GOAL: {
-      const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload.id);
-      const newCountersList = [...state.counters];
-      newCountersList[index].goal = action.payload.count;
-      return {
-        ...state,
-        counters: newCountersList,
-      }
-    }
     case CountersActionTypes.SET_ACTIVE: {
       const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload.id);
       const newCountersList = [...state.counters];
@@ -83,15 +74,6 @@ export default function counterReducer(state: CountersState = initialState, acti
       const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload.id);
       const newCountersList = [...state.counters];
       newCountersList[index].activeIntervalId = action.payload.interval;
-      return {
-        ...state,
-        counters: [...newCountersList],
-      }
-    }
-    case CountersActionTypes.SET_COUNTER_TITLE: {
-      const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload.id);
-      const newCountersList = [...state.counters];
-      newCountersList[index].title = action.payload.title;
       return {
         ...state,
         counters: [...newCountersList],

@@ -32,7 +32,7 @@ export interface UpdateCounter {
   goal?: number,
   isActive?: boolean,
   activeIntervalId?: number,
-  isLoading: boolean,
+  isLoading?: boolean,
 }
 
 export interface CountersState {
@@ -43,10 +43,8 @@ export interface CountersState {
 
 export enum CountersActionTypes {
   SET_COUNTER = 'SET_COUNTER',
-  SET_GOAL = 'SET_GOAL',
   SET_ACTIVE = 'SET_ACTIVE',
   SET_INTERVAL_ID = 'SET_INTERVAL_ID',
-  SET_COUNTER_TITLE = 'SET_COUNTER_TITLE',
   ADD_COUNTER = 'ADD_COUNTER',
   FETCH_COUNTERS = 'FETCH_COUNTERS',
   FETCH_COUNTERS_SUCCESS = 'FETCH_COUNTERS_SUCCESS',
@@ -90,14 +88,6 @@ interface AddCounterAction {
   payload: CounterState,
 }
 
-interface SetCounterTitleAction {
-  type: CountersActionTypes.SET_COUNTER_TITLE,
-  payload: {
-    id: number,
-    title: string,
-  }
-}
-
 interface SetCounterAction {
   type: CountersActionTypes.SET_COUNTER,
   payload: {
@@ -105,13 +95,6 @@ interface SetCounterAction {
     count: number,
   }
 }
-
-interface SetGoalAction {
-  type: CountersActionTypes.SET_GOAL,
-  payload: {
-    id: number,
-    count: number,
-  }}
 
 interface SetActiveAction {
   type: CountersActionTypes.SET_ACTIVE,
@@ -130,10 +113,8 @@ interface SetIntervalAction {
 }
 
 export type CounterAction = SetCounterAction
-  | SetGoalAction
   | SetActiveAction
   | SetIntervalAction
-  | SetCounterTitleAction
   | AddCounterAction
   | FetchCounters
   | FetchCountersSuccess
