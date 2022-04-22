@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   const { fetchCounters } = useAction();
 
   useEffect(() => {
-    fetchCounters();
+    fetchCounters(0);
   }, [])
 
   if (loading) {

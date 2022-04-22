@@ -8,6 +8,31 @@ export interface CounterState {
   goal: number,
   isActive: boolean,
   activeIntervalId: number,
+  isLoading: boolean,
+}
+
+export interface CreateCounter {
+  ownerId: number,
+  title: string,
+  currentSessionValue: number,
+  weekValue: number,
+  monthValue: number,
+  goal: number,
+  isActive: boolean,
+  activeIntervalId: number,
+  isLoading: boolean,
+}
+
+export interface UpdateCounter {
+  ownerId?: number,
+  title?: string,
+  currentSessionValue?: number,
+  weekValue?: number,
+  monthValue?: number,
+  goal?: number,
+  isActive?: boolean,
+  activeIntervalId?: number,
+  isLoading: boolean,
 }
 
 export interface CountersState {
@@ -26,6 +51,9 @@ export enum CountersActionTypes {
   FETCH_COUNTERS = 'FETCH_COUNTERS',
   FETCH_COUNTERS_SUCCESS = 'FETCH_COUNTERS_SUCCESS',
   FETCH_COUNTERS_ERROR = 'FETCH_COUNTERS_ERROR',
+  PATCH_COUNTER = 'PATCH_COUNTER',
+  PATCH_COUNTER_SUCCESS = 'PATCH_COUNTER_SUCCESS',
+  PATCH_COUNTER_ERROR = 'PATCH_COUNTER_ERROR',
 }
 
 interface FetchCounters {
@@ -39,6 +67,21 @@ interface FetchCountersSuccess {
 
 interface FetchCountersError {
   type: CountersActionTypes.FETCH_COUNTERS_ERROR,
+  payload: string,
+}
+
+interface PatchCounter {
+  type: CountersActionTypes.PATCH_COUNTER,
+  payload: number,
+}
+
+interface PatchCounterSuccess {
+  type: CountersActionTypes.PATCH_COUNTER_SUCCESS,
+  payload: CounterState,
+}
+
+interface PatchCounterError {
+  type: CountersActionTypes.PATCH_COUNTER_ERROR,
   payload: string,
 }
 
@@ -95,3 +138,6 @@ export type CounterAction = SetCounterAction
   | FetchCounters
   | FetchCountersSuccess
   | FetchCountersError
+  | PatchCounter
+  | PatchCounterSuccess
+  | PatchCounterError

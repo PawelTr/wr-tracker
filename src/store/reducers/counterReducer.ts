@@ -28,6 +28,30 @@ export default function counterReducer(state: CountersState = initialState, acti
         counters: []
       }
     }
+    case CountersActionTypes.PATCH_COUNTER: {
+      const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload);
+      const newCountersList = [...state.counters];
+      newCountersList[index].isLoading = true;
+      return {
+        ...state,
+        counters: newCountersList,
+      }
+    }
+    case CountersActionTypes.PATCH_COUNTER_SUCCESS: {
+      const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload._id);
+      const newCountersList = [...state.counters];
+      newCountersList[index] = action.payload;
+      return {
+        ...state,
+        counters: newCountersList,
+      }
+    }
+    case CountersActionTypes.PATCH_COUNTER_ERROR: {
+      return {
+        ...state,
+        error: action.payload
+      }
+    }
     case CountersActionTypes.SET_COUNTER: {
       const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload.id);
       const newCountersList = [...state.counters];
@@ -43,7 +67,7 @@ export default function counterReducer(state: CountersState = initialState, acti
       newCountersList[index].goal = action.payload.count;
       return {
         ...state,
-        counters: [...newCountersList],
+        counters: newCountersList,
       }
     }
     case CountersActionTypes.SET_ACTIVE: {

@@ -18,6 +18,7 @@ const AddCard: React.FC = () => {
       goal: 60,
       isActive: false,
       activeIntervalId: 0,
+      isLoading: false,
     }
 
     addCounter(newCounter);
