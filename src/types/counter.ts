@@ -1,5 +1,5 @@
 export interface CounterState {
-  id: number,
+  _id: number,
   ownerId: number,
   title: string,
   currentSessionValue: number,
@@ -11,6 +11,8 @@ export interface CounterState {
 }
 
 export interface CountersState {
+  loading: boolean,
+  error: string,
   counters: CounterState[],
 }
 
@@ -21,6 +23,23 @@ export enum CountersActionTypes {
   SET_INTERVAL_ID = 'SET_INTERVAL_ID',
   SET_COUNTER_TITLE = 'SET_COUNTER_TITLE',
   ADD_COUNTER = 'ADD_COUNTER',
+  FETCH_COUNTERS = 'FETCH_COUNTERS',
+  FETCH_COUNTERS_SUCCESS = 'FETCH_COUNTERS_SUCCESS',
+  FETCH_COUNTERS_ERROR = 'FETCH_COUNTERS_ERROR',
+}
+
+interface FetchCounters {
+  type: CountersActionTypes.FETCH_COUNTERS,
+}
+
+interface FetchCountersSuccess {
+  type: CountersActionTypes.FETCH_COUNTERS_SUCCESS,
+  payload: CounterState[],
+}
+
+interface FetchCountersError {
+  type: CountersActionTypes.FETCH_COUNTERS_ERROR,
+  payload: string,
 }
 
 interface AddCounterAction {
@@ -73,3 +92,6 @@ export type CounterAction = SetCounterAction
   | SetIntervalAction
   | SetCounterTitleAction
   | AddCounterAction
+  | FetchCounters
+  | FetchCountersSuccess
+  | FetchCountersError

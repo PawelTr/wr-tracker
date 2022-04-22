@@ -23,12 +23,12 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
   const stopCounter = () => {
     clearInterval(props.counter.activeIntervalId);
 
-    setActive(props.counter.id, false);
-    setInterval(props.counter.id, 0);
+    setActive(props.counter._id, false);
+    setInterval(props.counter._id, 0);
   }
 
   const startCounter = () => {
-    setActive(props.counter.id, true);
+    setActive(props.counter._id, true);
 
     if (props.counter.activeIntervalId) {
       return;
@@ -37,10 +37,10 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
     if (!props.counter.activeIntervalId) {
       const newIntervalId = window.setInterval(() => {
         newCurrentSessionValue++
-        updateCounter(props.counter.id, newCurrentSessionValue);
+        updateCounter(props.counter._id, newCurrentSessionValue);
       }, 1000)
 
-      setInterval(props.counter.id, newIntervalId);
+      setInterval(props.counter._id, newIntervalId);
     }
   }
 

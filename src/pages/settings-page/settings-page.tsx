@@ -13,7 +13,7 @@ const SettingsPage: React.FC = () => {
     <div className="settings-container">
       {
         counters.map((counter: CounterState) => {
-          return <SettingsCard counter={counter} key={counter.id}/>
+          return <SettingsCard counter={counter} key={counter._id}/>
         })
       }
       <AddCard/>

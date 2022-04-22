@@ -20,7 +20,7 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
   const submitGoalHandler = (event: any): void => {
     event.preventDefault();
     const countInMinutes = +event.target[0].value * 60;
-    updateGoal(props.counter.id, countInMinutes);
+    updateGoal(props.counter._id, countInMinutes);
 
     setSuccess(() => true)
     if (!success) {
@@ -33,7 +33,7 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
   const submitTitleHandler = (event: any): void => {
     event.preventDefault();
     const newTitle = event.target[0].value;
-    setTitle(props.counter.id, newTitle);
+    setTitle(props.counter._id, newTitle);
     setTitleActive(false);
   }
 

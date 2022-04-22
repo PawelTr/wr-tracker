@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import { CounterAction, CountersActionTypes, CounterState } from '../../types/counter';
+import axios from 'axios'
 
 export const updateCounter = (id: number, count: number) => {
   return (dispatch: Dispatch<CounterAction>) => {
@@ -36,3 +37,16 @@ export const addCounter = (counter: CounterState) => {
     dispatch({type: CountersActionTypes.ADD_COUNTER, payload: counter})
   }
 }
+
+export const fetchCounters = () => {
+  return async (dispatch: Dispatch<CounterAction>) => {
+    try {
+      dispatch({type: CountersActionTypes.FETCH_COUNTERS})
+      const response = await axios.get('http://localhost:4000/counters/0')
+      dispatch({type: CountersActionTypes.FETCH_COUNTERS_SUCCESS, payload: response.data})
+    } catch (error) {
+      dispatch({type: CountersActionTypes.FETCH_COUNTERS_ERROR, payload: 'Can\'t load counters'})
+    }
+  }
+}
+
