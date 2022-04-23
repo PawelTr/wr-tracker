@@ -15,28 +15,18 @@ const LoginForm = () => {
     event.preventDefault();
   }
 
-  const changeHandler = (event: any) => {
-    if (event.target.name === 'email') {
-      setEmail(event.target.value);
-    } else {
-      setPassword(event.target.value);
-    }
-  }
-
   return (
     <form className="login-form" onSubmit={signInHandler}>
       <label>email</label>
       <input className="login-form__input login-form__input--email"
              type="text"
-             name="email"
              placeholder="example@gmail.com"
-             onChange={changeHandler}/>
+             onChange={(e) => setEmail(e.target.value)}/>
       <label>password</label>
       <input className="login-form__input login-form__input--password"
              type="password"
-             name="password"
              placeholder="password"
-             onChange={changeHandler}/>
+             onChange={(e) => setPassword(e.target.value)}/>
       <button type="submit" className="login-form__button login-form__button--sign-in">
         Sign in
       </button>
