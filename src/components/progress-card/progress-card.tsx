@@ -8,14 +8,14 @@ import { useAction } from '../../store/action-creators/useAction';
 
 const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => {
 
-  const { setActive, setInterval, updateCounter } = useAction();
+  const { patchCounter } = useAction();
 
   let newCurrentSessionValue = props.counter.currentSessionValue;
 
   const color = 'blueviolet';
 
   useEffect(() => {
-    if (props.counter.currentSessionValue/props.counter.goal === 1) {
+    if (props.counter.currentSessionValue/props.counter.goal >= 1) {
       clearInterval(props.counter.activeIntervalId);
     }
   }, [props.counter.currentSessionValue, props.counter.activeIntervalId, props.counter.goal])
@@ -23,12 +23,12 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
   const stopCounter = () => {
     clearInterval(props.counter.activeIntervalId);
 
-    setActive(props.counter._id, false);
-    setInterval(props.counter._id, 0);
+    patchCounter(props.counter._id, {isActive: false});
+    patchCounter(props.counter._id, {activeIntervalId: 0});
   }
 
   const startCounter = () => {
-    setActive(props.counter._id, true);
+    patchCounter(props.counter._id, {isActive: true})
 
     if (props.counter.activeIntervalId) {
       return;
@@ -36,11 +36,11 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
 
     if (!props.counter.activeIntervalId) {
       const newIntervalId = window.setInterval(() => {
-        newCurrentSessionValue++
-        updateCounter(props.counter._id, newCurrentSessionValue);
-      }, 1000)
+        newCurrentSessionValue += 5
+        patchCounter(props.counter._id, {currentSessionValue: newCurrentSessionValue})
+      }, 5000)
 
-      setInterval(props.counter._id, newIntervalId);
+      patchCounter(props.counter._id, {activeIntervalId: newIntervalId});
     }
   }
 

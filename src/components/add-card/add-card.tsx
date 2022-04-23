@@ -2,14 +2,16 @@ import React from 'react';
 import logo from '../../assets/icons/add-svg.svg'
 import './add-card.scss'
 import { useAction } from '../../store/action-creators/useAction';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import CircularProgress from 'react-cssfx-loading/lib/CircularProgress';
 
 const AddCard: React.FC = () => {
 
-  const { addCounter } = useAction();
+  const { isCreationLoading } = useTypedSelector(state => state.counters);
+  const { createCounter } = useAction();
 
   const addCounterHandler = (): void => {
     const newCounter = {
-      _id: Math.random(),
       ownerId: 0,
       title: 'New Counter',
       currentSessionValue: 0,
@@ -21,15 +23,19 @@ const AddCard: React.FC = () => {
       isLoading: false,
     }
 
-    addCounter(newCounter);
+    createCounter(newCounter);
   }
 
   return(
     <div className='card-wrapper'>
       <div className="card-container--add">
-        <button className="card-add__button" onClick={addCounterHandler}>
-          <img src={logo} alt="add-img" className="add-img"/>
-        </button>
+        {
+          isCreationLoading
+          ? <CircularProgress width='64px' height='64px' color={'#fff'} />
+          : <button className="card-add__button" onClick={addCounterHandler}>
+              <img src={logo} alt="add-img" className="add-img"/>
+            </button>
+        }
       </div>
     </div>
   );

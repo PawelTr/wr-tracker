@@ -15,14 +15,14 @@ import './home-page.scss';
 
 const HomePage: React.FC = () => {
 
-  const { counters, loading, error } = useTypedSelector(state => state.counters);
+  const { counters, isLoading, error } = useTypedSelector(state => state.counters);
   const { fetchCounters } = useAction();
 
   useEffect(() => {
     fetchCounters(0);
   }, [])
 
-  if (loading) {
+  if (isLoading) {
     return <div className='loader-container'>
       <CircularProgress width='64px' height='64px' color={'#fff'} />
     </div>

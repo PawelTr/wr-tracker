@@ -11,7 +11,7 @@ export interface CounterState {
   isLoading: boolean,
 }
 
-export interface CreateCounter {
+export interface CreateCounterDto {
   ownerId: number,
   title: string,
   currentSessionValue: number,
@@ -23,7 +23,7 @@ export interface CreateCounter {
   isLoading: boolean,
 }
 
-export interface UpdateCounter {
+export interface UpdateCounterDto {
   ownerId?: number,
   title?: string,
   currentSessionValue?: number,
@@ -36,15 +36,13 @@ export interface UpdateCounter {
 }
 
 export interface CountersState {
-  loading: boolean,
+  isCreationLoading: boolean,
+  isLoading: boolean,
   error: string,
   counters: CounterState[],
 }
 
 export enum CountersActionTypes {
-  SET_COUNTER = 'SET_COUNTER',
-  SET_ACTIVE = 'SET_ACTIVE',
-  SET_INTERVAL_ID = 'SET_INTERVAL_ID',
   ADD_COUNTER = 'ADD_COUNTER',
   FETCH_COUNTERS = 'FETCH_COUNTERS',
   FETCH_COUNTERS_SUCCESS = 'FETCH_COUNTERS_SUCCESS',
@@ -52,6 +50,9 @@ export enum CountersActionTypes {
   PATCH_COUNTER = 'PATCH_COUNTER',
   PATCH_COUNTER_SUCCESS = 'PATCH_COUNTER_SUCCESS',
   PATCH_COUNTER_ERROR = 'PATCH_COUNTER_ERROR',
+  CREATE_COUNTER = 'CREATE_COUNTER',
+  CREATE_COUNTER_SUCCESS = 'CREATE_COUNTER_SUCCESS',
+  CREATE_COUNTER_ERROR = 'CREATE_COUNTER_ERROR',
 }
 
 interface FetchCounters {
@@ -83,38 +84,26 @@ interface PatchCounterError {
   payload: string,
 }
 
+interface CreateCounter {
+  type: CountersActionTypes.CREATE_COUNTER,
+}
+
+interface CreateCounterSuccess {
+  type: CountersActionTypes.CREATE_COUNTER_SUCCESS,
+  payload: CounterState,
+}
+
+interface CreateCounterError {
+  type: CountersActionTypes.CREATE_COUNTER_ERROR,
+  payload: string,
+}
+
 interface AddCounterAction {
   type: CountersActionTypes.ADD_COUNTER,
   payload: CounterState,
 }
 
-interface SetCounterAction {
-  type: CountersActionTypes.SET_COUNTER,
-  payload: {
-    id: number,
-    count: number,
-  }
-}
-
-interface SetActiveAction {
-  type: CountersActionTypes.SET_ACTIVE,
-  payload: {
-    id: number,
-    isActive: boolean,
-  }
-}
-
-interface SetIntervalAction {
-  type: CountersActionTypes.SET_INTERVAL_ID,
-  payload: {
-    id: number,
-    interval: number,
-  }
-}
-
-export type CounterAction = SetCounterAction
-  | SetActiveAction
-  | SetIntervalAction
+export type CounterAction =
   | AddCounterAction
   | FetchCounters
   | FetchCountersSuccess
@@ -122,3 +111,6 @@ export type CounterAction = SetCounterAction
   | PatchCounter
   | PatchCounterSuccess
   | PatchCounterError
+  | CreateCounter
+  | CreateCounterSuccess
+  | CreateCounterError
