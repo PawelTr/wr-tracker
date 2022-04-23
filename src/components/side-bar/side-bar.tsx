@@ -27,9 +27,9 @@ const SideBar: React.FC = () => {
             <img className="nav__item-logo" src={settingsLogo} alt="Settings"/>
           </li></Link>
         </ul>
-        <div className="nav__item">
+        <Link to="/login" className="nav__item">
           <img className="nav__item-logo" src={logoutLogo} alt="logout" />
-        </div>
+        </Link>
       </nav>
     </div>
   );
