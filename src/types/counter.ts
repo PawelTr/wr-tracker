@@ -1,5 +1,5 @@
 export interface CounterState {
-  _id: number,
+  _id: string,
   ownerId: number,
   title: string,
   currentSessionValue: number,
@@ -9,6 +9,7 @@ export interface CounterState {
   isActive: boolean,
   activeIntervalId: number,
   isLoading: boolean,
+  colour: string,
 }
 
 export interface CreateCounterDto {
@@ -43,7 +44,6 @@ export interface CountersState {
 }
 
 export enum CountersActionTypes {
-  ADD_COUNTER = 'ADD_COUNTER',
   FETCH_COUNTERS = 'FETCH_COUNTERS',
   FETCH_COUNTERS_SUCCESS = 'FETCH_COUNTERS_SUCCESS',
   FETCH_COUNTERS_ERROR = 'FETCH_COUNTERS_ERROR',
@@ -53,6 +53,9 @@ export enum CountersActionTypes {
   CREATE_COUNTER = 'CREATE_COUNTER',
   CREATE_COUNTER_SUCCESS = 'CREATE_COUNTER_SUCCESS',
   CREATE_COUNTER_ERROR = 'CREATE_COUNTER_ERROR',
+  DELETE_COUNTER = 'DELETE_COUNTER',
+  DELETE_COUNTER_SUCCESS = 'DELETE_COUNTER_SUCCESS',
+  DELETE_COUNTER_ERROR = 'DELETE_COUNTER_ERROR',
 }
 
 interface FetchCounters {
@@ -71,7 +74,7 @@ interface FetchCountersError {
 
 interface PatchCounter {
   type: CountersActionTypes.PATCH_COUNTER,
-  payload: number,
+  payload: string,
 }
 
 interface PatchCounterSuccess {
@@ -98,13 +101,22 @@ interface CreateCounterError {
   payload: string,
 }
 
-interface AddCounterAction {
-  type: CountersActionTypes.ADD_COUNTER,
-  payload: CounterState,
+interface DeleteCounter {
+  type: CountersActionTypes.DELETE_COUNTER,
+  payload: string,
+}
+
+interface DeleteCounterSuccess {
+  type: CountersActionTypes.DELETE_COUNTER_SUCCESS,
+  payload: string,
+}
+
+interface DeleteCounterError {
+  type: CountersActionTypes.DELETE_COUNTER_ERROR,
+  payload: string,
 }
 
 export type CounterAction =
-  | AddCounterAction
   | FetchCounters
   | FetchCountersSuccess
   | FetchCountersError
@@ -114,3 +126,6 @@ export type CounterAction =
   | CreateCounter
   | CreateCounterSuccess
   | CreateCounterError
+  | DeleteCounter
+  | DeleteCounterSuccess
+  | DeleteCounterError

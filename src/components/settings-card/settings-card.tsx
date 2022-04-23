@@ -10,9 +10,9 @@ import saveLogo from '../../assets/icons/save-svg.svg'
 
 const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => {
 
-  const { patchCounter } = useAction();
+  const { patchCounter, deleteCounter } = useAction();
 
-  const color = 'blueviolet';
+  const color = props.counter.colour || 'blueviolet';
 
   const titleInput = useRef<any>(null)
   const [success, setSuccess] = useState(false);
@@ -42,6 +42,11 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
     event.preventDefault();
     setTitleActive(true);
     titleInput.current.focus();
+  }
+
+  const deleteCounterHandler = (event: any): void => {
+    event.preventDefault();
+    deleteCounter(props.counter._id)
   }
 
   return(
@@ -77,13 +82,22 @@ const SettingsCard: React.FC<SettingsCardProps> = (props: SettingsCardProps) => 
             <div className="settings-card__input-text" style={{ color: color }}> min </div>
           </div>
           <button type="submit"
-                  className="settings-card__button"
+                  className="settings-card__button settings-card__button--save"
                   disabled={props.counter.isLoading}
                   style={{ backgroundColor: color }}>
             { props.counter.isLoading
               ? <CircularProgress width="36px" height="36px" color={'#fff'} />
               : ( <div><span>Save</span> {success && <img className="settings-card__button-success" src={successLogo} alt="success"/>}</div>
               )
+            }
+          </button>
+          <button className="settings-card__button settings-card__button--delete"
+                  disabled={props.counter.isLoading}
+                  onClick={deleteCounterHandler}
+                  style={{ backgroundColor: color }}>
+            { props.counter.isLoading
+              ? <CircularProgress width="36px" height="36px" color={'#fff'} />
+              : <span>Delete</span>
             }
           </button>
         </form>

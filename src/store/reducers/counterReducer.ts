@@ -56,6 +56,32 @@ export default function counterReducer(state: CountersState = initialState, acti
         error: action.payload
       }
     }
+    case CountersActionTypes.DELETE_COUNTER: {
+      const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload);
+      const newCountersList = [...state.counters];
+      newCountersList[index].isLoading = true;
+      return {
+        ...state,
+        counters: newCountersList,
+      }
+    }
+    case CountersActionTypes.DELETE_COUNTER_SUCCESS: {
+      const index = state.counters.findIndex((counter: CounterState) => counter._id === action.payload);
+      const newCountersList = [...state.counters];
+      if (index > -1) {
+        newCountersList.splice(index, 1);
+      }
+      return {
+        ...state,
+        counters: newCountersList,
+      }
+    }
+    case CountersActionTypes.DELETE_COUNTER_ERROR: {
+      return {
+        ...state,
+        error: action.payload
+      }
+    }
     case CountersActionTypes.CREATE_COUNTER: {
       return {
         ...state,

@@ -19,7 +19,7 @@ export const fetchCounters = (userId: number) => {
   }
 }
 
-export const patchCounter = (counterId: number, updateCounter: UpdateCounterDto) => {
+export const patchCounter = (counterId: string, updateCounter: UpdateCounterDto) => {
   return async (dispatch: Dispatch<CounterAction>) => {
     try {
       dispatch({type: CountersActionTypes.PATCH_COUNTER, payload: counterId})
@@ -39,6 +39,18 @@ export const createCounter = (createCounter: CreateCounterDto) => {
       dispatch({type: CountersActionTypes.CREATE_COUNTER_SUCCESS, payload: response.data})
     } catch (error) {
       dispatch({type: CountersActionTypes.CREATE_COUNTER_ERROR, payload: 'Can\'t create counter'})
+    }
+  }
+}
+
+export const deleteCounter = (id: string) => {
+  return async (dispatch: Dispatch<CounterAction>) => {
+    try {
+      dispatch({type: CountersActionTypes.DELETE_COUNTER, payload: id})
+      await axios.delete(`http://localhost:4000/counters/${id}`)
+      dispatch({type: CountersActionTypes.DELETE_COUNTER_SUCCESS, payload: id})
+    } catch (error) {
+      dispatch({type: CountersActionTypes.DELETE_COUNTER_ERROR, payload: 'Can\'t delete counter'})
     }
   }
 }

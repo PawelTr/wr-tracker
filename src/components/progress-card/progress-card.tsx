@@ -12,7 +12,7 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
 
   let newCurrentSessionValue = props.counter.currentSessionValue;
 
-  const color = 'blueviolet';
+  const color = props.counter.colour || 'blueviolet';
 
   useEffect(() => {
     if (props.counter.currentSessionValue/props.counter.goal >= 1) {
