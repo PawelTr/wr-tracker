@@ -23,8 +23,7 @@ const ProgressCard: React.FC<ProgressCardProps> = (props: ProgressCardProps) => 
   const stopCounter = () => {
     clearInterval(props.counter.activeIntervalId);
 
-    patchCounter(props.counter._id, {isActive: false});
-    patchCounter(props.counter._id, {activeIntervalId: 0});
+    patchCounter(props.counter._id, {isActive: false, activeIntervalId: 0});
   }
 
   const startCounter = () => {
