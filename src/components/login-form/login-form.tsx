@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
 import './login-form.scss'
+import { useAction } from '../../store/action-creators/useAction';
 
 const LoginForm = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { login, registration } = useAction();
 
-  const signInHandler = (event: any):void => {
+
+  const signInHandler = (event: any): void => {
     event.preventDefault();
+    const userDto = {
+      email,
+      password,
+    }
+    login(userDto);
   }
 
-  const signUpHandler = (event: any):void => {
+  const signUpHandler = (event: any): void => {
     event.preventDefault();
+    console.log("signUp")
+    const userDto = {
+      email,
+      password,
+    }
+    registration(userDto);
   }
 
   return (
