@@ -19,7 +19,8 @@ export default function userReducer(state: UserState = initialState, action: Use
     case UserActionTypes.LOGIN_SUCCESS: {
       return {
         ...state,
-        ...action.payload,
+        email: action.payload.user.email,
+        _id: action.payload.user._id,
         isLoading: false,
         isAuth: true,
       }
@@ -42,7 +43,8 @@ export default function userReducer(state: UserState = initialState, action: Use
     case UserActionTypes.REGISTRATION_SUCCESS: {
       return {
         ...state,
-        ...action.payload,
+        email: action.payload.user.email,
+        _id: action.payload.user._id,
         isLoading: false,
         isAuth: true,
       }
@@ -54,6 +56,11 @@ export default function userReducer(state: UserState = initialState, action: Use
         isLoading: false,
         error: action.payload,
         isAuth: false,
+      }
+    }
+    case UserActionTypes.CHECK_AUTH: {
+      return {
+        ...state,
       }
     }
     default:

@@ -16,11 +16,14 @@ import './home-page.scss';
 const HomePage: React.FC = () => {
 
   const { counters, isLoading, error } = useTypedSelector(state => state.counters);
+  const { _id, isAuth } = useTypedSelector(state => state.user)
   const { fetchCounters } = useAction();
 
   useEffect(() => {
-    fetchCounters(0);
-  }, [])
+    if (isAuth) {
+      fetchCounters(_id);
+    }
+  }, [isAuth])
 
   if (isLoading) {
     return <div className='loader-container'>

@@ -29,6 +29,11 @@ export enum UserActionTypes {
   REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS',
   REGISTRATION_ERROR = 'REGISTRATION_ERROR',
   LOGOUT = 'LOGOUT',
+  CHECK_AUTH = 'CHECK_AUTH',
+}
+
+interface CheckAuth {
+  type: UserActionTypes.CHECK_AUTH,
 }
 
 interface Login {
@@ -71,3 +76,4 @@ export type UserAction =
   | RegistrationError
   | RegistrationSuccess
   | Logout
+  | CheckAuth

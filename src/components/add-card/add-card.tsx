@@ -8,11 +8,12 @@ import CircularProgress from 'react-cssfx-loading/lib/CircularProgress';
 const AddCard: React.FC = () => {
 
   const { isCreationLoading } = useTypedSelector(state => state.counters);
+  const { _id } = useTypedSelector(state => state.user)
   const { createCounter } = useAction();
 
   const addCounterHandler = (): void => {
     const newCounter = {
-      ownerId: 0,
+      ownerId: _id,
       title: 'New Counter',
       currentSessionValue: 0,
       weekValue: 0,

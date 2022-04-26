@@ -7,7 +7,7 @@ import {
 } from '../../types/counter';
 import $api from '../../http';
 
-export const fetchCounters = (userId: number) => {
+export const fetchCounters = (userId: string) => {
   return async (dispatch: Dispatch<CounterAction>) => {
     try {
       dispatch({type: CountersActionTypes.FETCH_COUNTERS})

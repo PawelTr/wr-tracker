@@ -8,13 +8,18 @@ import dashboardLogo from '../../assets/icons/Dashboard.svg'
 import logoutLogo from '../../assets/icons/logout.svg'
 
 import './side-bar.scss'
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const SideBar: React.FC = () => {
+
+  const { email, isAuth } = useTypedSelector((state => state.user))
+
   return(
     <div className="sidebar">
       <div className="logo">
         <img src={logo} alt="logo" className="logo__img"/>
       </div>
+      <div> {isAuth && email} </div>
       <nav className="nav">
         <ul>
           <Link to="/"><li className="nav__item">

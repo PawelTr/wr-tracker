@@ -1,6 +1,6 @@
 export interface CounterState {
   _id: string,
-  ownerId: number,
+  ownerId: string,
   title: string,
   currentSessionValue: number,
   weekValue: number,
@@ -13,7 +13,7 @@ export interface CounterState {
 }
 
 export interface CreateCounterDto {
-  ownerId: number,
+  ownerId: string,
   title: string,
   currentSessionValue: number,
   weekValue: number,
@@ -25,7 +25,6 @@ export interface CreateCounterDto {
 }
 
 export interface UpdateCounterDto {
-  ownerId?: number,
   title?: string,
   currentSessionValue?: number,
   weekValue?: number,

@@ -9,11 +9,14 @@ import { useAction } from '../../store/action-creators/useAction';
 const SettingsPage: React.FC = () => {
 
   const { counters } = useTypedSelector(state => state.counters);
+  const { _id, isAuth } = useTypedSelector(state => state.user)
   const { fetchCounters } = useAction();
 
   useEffect(() => {
-    fetchCounters(0);
-  }, [])
+    if (isAuth) {
+      fetchCounters(_id);
+    }
+  }, [isAuth])
 
   return(
     <div className="settings-container">
