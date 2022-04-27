@@ -3,6 +3,9 @@
 .login-form {
   width: 30%;
   min-width: 500px;
+  padding: 24px;
+  background-color: $base-color;
+  border-radius: 10px;
 
   &__input {
     font-family: sans-serif;
@@ -12,6 +15,7 @@
     padding: 14px;
     border-radius: 10px;
     margin-bottom: 16px;
+    background-color: $base-color-dark;
 
     &:focus-visible {
       outline: none;

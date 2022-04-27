@@ -31,12 +31,12 @@ const LoginForm = () => {
 
   return (
     <form className="login-form" onSubmit={signInHandler}>
-      <label>email</label>
+      <label>Login</label>
       <input className="login-form__input login-form__input--email"
              type="text"
-             placeholder="example@gmail.com"
+             placeholder="login"
              onChange={(e) => setEmail(e.target.value)}/>
-      <label>password</label>
+      <label>Password</label>
       <input className="login-form__input login-form__input--password"
              type="password"
              placeholder="password"
