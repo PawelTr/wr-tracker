@@ -18,7 +18,7 @@ const AddCard: React.FC = () => {
       currentSessionValue: 0,
       weekValue: 0,
       monthValue: 0,
-      goal: 60,
+      goal: 240,
       isActive: false,
       activeIntervalId: 0,
       isLoading: false,

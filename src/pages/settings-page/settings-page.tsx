@@ -25,7 +25,7 @@ const SettingsPage: React.FC = () => {
           return <SettingsCard counter={counter} key={counter._id}/>
         })
       }
-      <AddCard/>
+      { counters.length <= 6 && <AddCard /> }
     </div>
   )
 }

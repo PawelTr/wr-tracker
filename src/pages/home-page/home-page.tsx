@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
       { counters.map((counter: CounterState) => {
         return <ProgressCard counter={counter} key={counter._id}/>
       }) }
-      <AddCard />
+      { counters.length <= 6 && <AddCard /> }
     </div>
   );
 }

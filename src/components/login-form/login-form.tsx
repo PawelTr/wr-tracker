@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import './login-form.scss'
 import { useAction } from '../../store/action-creators/useAction';
 
@@ -21,7 +21,6 @@ const LoginForm = () => {
 
   const signUpHandler = (event: any): void => {
     event.preventDefault();
-    console.log("signUp")
     const userDto = {
       email,
       password,
@@ -35,12 +34,12 @@ const LoginForm = () => {
       <input className="login-form__input login-form__input--email"
              type="text"
              placeholder="login"
-             onChange={(e) => setEmail(e.target.value)}/>
+             onChange={(event: ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}/>
       <label>Password</label>
       <input className="login-form__input login-form__input--password"
              type="password"
              placeholder="password"
-             onChange={(e) => setPassword(e.target.value)}/>
+             onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}/>
       <button type="submit" className="login-form__button login-form__button--sign-in">
         Sign in
       </button>
