@@ -9,10 +9,13 @@ import logoutLogo from '../../assets/icons/logout.svg'
 
 import './side-bar.scss'
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useAction } from '../../store/action-creators/useAction';
 
 const SideBar: React.FC = () => {
 
   const { email, isAuth } = useTypedSelector((state => state.user))
+
+  const { logout } = useAction();
 
   return(
     <div className="sidebar">
@@ -32,9 +35,9 @@ const SideBar: React.FC = () => {
             <img className="nav__item-logo" src={settingsLogo} alt="Settings"/>
           </li></Link>
         </ul>
-        <Link to="/login" className="nav__item">
+        <div onClick={logout} className="nav__item">
           <img className="nav__item-logo" src={logoutLogo} alt="logout" />
-        </Link>
+        </div>
       </nav>
     </div>
   );

@@ -29,15 +29,14 @@ export const registration = (userDto: CreateUserDto) => {
   }
 }
 
-export const logout = (userDto: CreateUserDto) => {
+export const logout = () => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
-      dispatch({type: UserActionTypes.REGISTRATION})
-      const response = await axios.post<UserWithTokens>('http://localhost:4000/auth/logout', {...userDto}, {withCredentials: true});
-      localStorage.setItem('WRAccessToken', response.data.accessToken);
-      dispatch({type: UserActionTypes.REGISTRATION_SUCCESS, payload: response.data})
+      dispatch({type: UserActionTypes.LOGOUT})
+      await axios.post<UserWithTokens>('http://localhost:4000/auth/logout', {}, {withCredentials: true});
+      localStorage.setItem('WRAccessToken', '');
     } catch (error) {
-      dispatch({type: UserActionTypes.REGISTRATION_ERROR, payload: 'Can\'t registrate'})
+      console.log(error)
     }
   }
 }

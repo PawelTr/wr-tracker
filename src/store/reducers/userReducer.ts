@@ -58,6 +58,9 @@ export default function userReducer(state: UserState = initialState, action: Use
         isAuth: false,
       }
     }
+    case UserActionTypes.LOGOUT: {
+      return initialState;
+    }
     case UserActionTypes.CHECK_AUTH: {
       return {
         ...state,
